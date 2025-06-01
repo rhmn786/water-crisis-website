@@ -1,0 +1,230 @@
+/* Animation styles */
+
+/* Base animation classes */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.animate-on-scroll.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade in animation */
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.fade-in.animated {
+  opacity: 1;
+}
+
+/* Slide animations */
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.slide-in-right.animated {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-in-left {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.slide-in-left.animated {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.slide-up.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Zoom animations */
+.zoom-in {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.zoom-in.animated {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Delays for staggered animations */
+.delay-1 {
+  transition-delay: 0.2s;
+}
+
+.delay-2 {
+  transition-delay: 0.4s;
+}
+
+.delay-3 {
+  transition-delay: 0.6s;
+}
+
+/* Special animations */
+/* Stats bar animation */
+.stat-chart .bar-fill {
+  height: 0;
+  transition: height 1.5s ease;
+}
+
+.stat-item.animated .bar-fill {
+  height: var(--height, 0%);
+}
+
+/* Nav scroll effect */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+nav.scrolled {
+  animation: fadeInDown 0.5s ease forwards;
+}
+
+/* Water drop animation for logo */
+@keyframes waterDrop {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
+.logo {
+  position: relative;
+}
+
+.logo::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  left: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: waterDrop 2s infinite;
+}
+
+/* Button hover effects */
+@keyframes buttonPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(38, 166, 154, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(38, 166, 154, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(38, 166, 154, 0);
+  }
+}
+
+.cta-button:hover {
+  animation: buttonPulse 1.5s infinite;
+}
+
+/* Background wave animation for action section */
+.bg-action {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-action::before,
+.bg-action::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-repeat: repeat-x;
+  height: 10px;
+  opacity: 0.3;
+}
+
+.bg-action::before {
+  top: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25' fill='%23ffffff'%3E%3C/path%3E%3C/svg%3E");
+  animation: waveAnimation 15s linear infinite;
+}
+
+.bg-action::after {
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25' fill='%23ffffff'%3E%3C/path%3E%3C/svg%3E");
+  transform: rotate(180deg);
+  animation: waveAnimation 20s linear infinite reverse;
+}
+
+@keyframes waveAnimation {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 1000px;
+  }
+}
+
+/* Media queries for animations */
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll,
+  .fade-in,
+  .slide-in-right,
+  .slide-in-left,
+  .slide-up,
+  .zoom-in,
+  .stat-chart .bar-fill,
+  .cta-button:hover,
+  .bg-action::before,
+  .bg-action::after,
+  .logo::before {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .animate-on-scroll,
+  .fade-in,
+  .slide-in-right,
+  .slide-in-left,
+  .slide-up,
+  .zoom-in {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .stat-chart .bar-fill {
+    height: var(--height, 0%) !important;
+  }
+}
